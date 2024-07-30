@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
 
 // Define a type for the language translator context
-type LanguageTranslator = {
-  language: { [key: string]: string }; // Object representing the language translations
+type LanguageTranslator<T> = {
+  language: T; // Object representing the language translations
   setLanguage: React.Dispatch<React.SetStateAction<string>>; // Function to update the language
 };
 
@@ -13,7 +13,7 @@ type LanguageTranslator = {
    * @param setLanguage: Function to update the language (string value)
    
    */
-const LanguageTranslator = createContext<LanguageTranslator | undefined>(
+const LanguageTranslator = createContext<LanguageTranslator<any> | undefined>(
   undefined
 );
 
@@ -27,7 +27,7 @@ const LanguageTranslator = createContext<LanguageTranslator | undefined>(
  * @usage
  * t.hello // "Bonjour" // "नमस्ते"... etc
  */
-const useLanguageTranslator = (): LanguageTranslator => {
+const useLanguageTranslator = <T,>(): LanguageTranslator<T> => {
   // Get the context value
   const context = useContext(LanguageTranslator);
   // If the context is undefined, throw an error
@@ -37,7 +37,7 @@ const useLanguageTranslator = (): LanguageTranslator => {
     );
   }
   // Return the context value
-  return context;
+  return context as LanguageTranslator<T>;
 };
 
 export { LanguageTranslator, useLanguageTranslator };
