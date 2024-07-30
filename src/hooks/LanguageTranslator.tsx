@@ -18,6 +18,15 @@ const LanguageTranslator = createContext<LanguageTranslator | undefined>(
 );
 
 // Custom hook to use the LanguageTranslator context
+/**
+ * useLanguageTranslator: Custom hook to use the LanguageTranslator context
+ * @returns Context to store the language translations and the function to update the languag
+ * @example
+ * const { language: t, setLanguage } = useLanguageTranslator();
+ * setLanguage("fr");
+ * @usage
+ * t.hello // "Bonjour" // "नमस्ते"... etc
+ */
 const useLanguageTranslator = (): LanguageTranslator => {
   // Get the context value
   const context = useContext(LanguageTranslator);
