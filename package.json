@@ -8,7 +8,8 @@
     "access": "public"
   },
   "scripts": {
-    "rollup": "rollup -c --bundleConfigAsCjs && npm pack",
+    "rollup": "npm run clean && rollup -c --bundleConfigAsCjs && npm pack",
+    "clean": "rimraf dist ps-multilang-*.tgz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pranav Sehgal",
@@ -34,5 +35,7 @@
   "keywords": [
     "react"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "rimraf": "^6.0.1"
+  }
 }
